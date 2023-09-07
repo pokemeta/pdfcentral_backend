@@ -1,0 +1,5 @@
+# Ignore the uploaded pdf files to backend
+pdfs/db/*
+pdfs/dg/*
+pdfs/di/*
+pdfs/pap/*
