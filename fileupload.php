@@ -18,12 +18,7 @@ for($i = 0; $i < count($uploadedfiles); $i++){
         $filename = $uploadedfiles["name"][$i];
         $filedir = null;
         //$filedir = 'pdfs/'.$filename;
-        switch($area){
-
-            case "dg":
-                $filedir = 'pdfs/dg/'.$filename;
-                break;
-        }
+        $filedir = "pdfs/$area/".$filename;
 
         if($uploadedfiles['type'][$i] == "application/pdf"){
 
