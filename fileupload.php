@@ -18,6 +18,13 @@ for($i = 0; $i < count($uploadedfiles); $i++){
         $filename = $uploadedfiles["name"][$i];
         $filedir = null;
         //$filedir = 'pdfs/'.$filename;
+
+        if(!is_dir("./pdfs/$area/")){
+
+            mkdir("./pdfs/$area/", 0777, true);
+
+        }
+
         $filedir = "pdfs/$area/".$filename;
 
         if($uploadedfiles['type'][$i] == "application/pdf"){
