@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-09-2023 a las 18:55:03
+-- Tiempo de generación: 08-09-2023 a las 19:36:41
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -91,13 +91,42 @@ CREATE TABLE `files_pap` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `sentfiles`
+--
+
+CREATE TABLE `sentfiles` (
+  `id` int(11) NOT NULL,
+  `idusersender` int(11) DEFAULT NULL,
+  `iduserreceiver` int(11) NOT NULL,
+  `idfilesent` int(11) DEFAULT NULL,
+  `area_origin` text DEFAULT NULL,
+  `viewed` int(11) DEFAULT 0,
+  `checked` int(11) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Disparadores `sentfiles`
+--
+DELIMITER $$
+CREATE TRIGGER `after_insert_filesent` AFTER INSERT ON `sentfiles` FOR EACH ROW BEGIN
+
+	INSERT INTO timestest(datetimes, sent_notified, useridlink) VALUES(NOW(), 0, NEW.idusersender);
+
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `timestest`
 --
 
 CREATE TABLE `timestest` (
   `id` int(11) NOT NULL,
   `datetimes` datetime NOT NULL,
-  `sent_notified` tinyint(1) NOT NULL DEFAULT 0
+  `sent_notified` tinyint(1) NOT NULL DEFAULT 0,
+  `useridlink` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -121,7 +150,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `active`, `area`, `rol`) VALUES
 (1, 'admin', '123', '1', 'DG', 'usuario'),
-(2, 'legible', '1234', '1', 'PAP', 'lider'),
+(2, 'legible', '1234', '1', 'PAP', 'usuario'),
 (3, 'ivan', '1234', '1', 'DI', 'usuario'),
 (4, 'pokemeta', '1234', '1', 'DB', 'usuario'),
 (5, 'hgfdgfdgfdsgfdsgfdsgf', 'gfdsgfdgfdsgfdsgfdsgfdsgfds', '1', 'DG', 'usuario'),
@@ -178,10 +207,18 @@ ALTER TABLE `files_pap`
   ADD KEY `iduser` (`iduser`);
 
 --
+-- Indices de la tabla `sentfiles`
+--
+ALTER TABLE `sentfiles`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idusersender` (`idusersender`);
+
+--
 -- Indices de la tabla `timestest`
 --
 ALTER TABLE `timestest`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `useridlink` (`useridlink`);
 
 --
 -- Indices de la tabla `users`
@@ -221,6 +258,12 @@ ALTER TABLE `files_di`
 -- AUTO_INCREMENT de la tabla `files_pap`
 --
 ALTER TABLE `files_pap`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `sentfiles`
+--
+ALTER TABLE `sentfiles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -268,6 +311,18 @@ ALTER TABLE `files_di`
 --
 ALTER TABLE `files_pap`
   ADD CONSTRAINT `files_pap_ibfk_1` FOREIGN KEY (`iduser`) REFERENCES `users` (`id`);
+
+--
+-- Filtros para la tabla `sentfiles`
+--
+ALTER TABLE `sentfiles`
+  ADD CONSTRAINT `sentfiles_ibfk_1` FOREIGN KEY (`idusersender`) REFERENCES `users` (`id`);
+
+--
+-- Filtros para la tabla `timestest`
+--
+ALTER TABLE `timestest`
+  ADD CONSTRAINT `timestest_ibfk_1` FOREIGN KEY (`useridlink`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
