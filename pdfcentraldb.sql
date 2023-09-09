@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-09-2023 a las 19:36:41
+-- Tiempo de generación: 09-09-2023 a las 19:35:16
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -110,7 +110,7 @@ CREATE TABLE `sentfiles` (
 DELIMITER $$
 CREATE TRIGGER `after_insert_filesent` AFTER INSERT ON `sentfiles` FOR EACH ROW BEGIN
 
-	INSERT INTO timestest(datetimes, sent_notified, useridlink) VALUES(NOW(), 0, NEW.idusersender);
+	INSERT INTO timestest(datetimes, sent_notified, useridlink) VALUES(NOW(), 0, NEW.iduserreceiver);
 
 END
 $$
@@ -149,11 +149,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `active`, `area`, `rol`) VALUES
-(1, 'admin', '123', '1', 'DG', 'usuario'),
-(2, 'legible', '1234', '1', 'PAP', 'usuario'),
-(3, 'ivan', '1234', '1', 'DI', 'usuario'),
-(4, 'pokemeta', '1234', '1', 'DB', 'usuario'),
-(5, 'hgfdgfdgfdsgfdsgfdsgf', 'gfdsgfdgfdsgfdsgfdsgfdsgfds', '1', 'DG', 'usuario'),
+(1, 'admin', '123', '1', 'DG', 'lider'),
+(2, 'legible', '1234', '1', 'PAP', 'lider'),
+(3, 'ivan', '1234', '1', 'DI', 'lider'),
+(4, 'pokemeta', '1234', '1', 'DB', 'lider'),
+(5, 'user1', '1234', '1', 'DG', 'usuario'),
 (6, 'fdsggfdsgfdsgfdgfdsgfdgfds', 'gfdsgfdsgfdsgfdsgfdgfdgf', '1', 'DG', 'usuario'),
 (9, 'erwtertrw', 'erwgjhkjhjhgfgcxf', '1', 'PAP', 'usuario'),
 (10, 'piuyjgfddzsvfds', 'fdsadx ccbggf', '1', 'PAP', 'usuario'),
