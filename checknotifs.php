@@ -1,5 +1,17 @@
 <?php
-require('connection.php');
+
+/*
+
+    This is the script that checks if there are any unread notifications in the database.
+
+    The query is the key that makes this possible, it's currently set so it only reads
+    entries that are less than 5 minutes recent, and by selecting the ones by 0, which means
+    they're unread, and of course, by using the user's id to determine who's notifications are
+    unread.
+
+*/
+
+require('connection.php'); //retrieving $conn from here
 
 $id = $_POST["id"];
 
