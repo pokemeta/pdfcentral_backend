@@ -1,5 +1,15 @@
 <?php
 
+/*
+
+    This file handles the registration of the
+    file that was sent to users.
+
+    In this case, a for is used for every single
+    user of the same type that will get said file.
+
+*/
+
 require('connection.php');
 
 //$conn
@@ -46,11 +56,5 @@ if($userresults){
     }
 
 }
-
-/*$query = "INSERT INTO sentfiles(idusersender, iduserreceiver, idfilesent, area_origin) VALUES($usersend, $userdest, $file, '$area')";
-$statement = $conn->prepare($query);
-$statement->execute();*/
-
-//echo json_encode($result);
 
 ?>
