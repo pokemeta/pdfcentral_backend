@@ -1,5 +1,21 @@
 <?php
 
+/*
+
+    The most complex php code out of the backend.
+    This what does is that it has the necessary validations
+    for the files uploaded, the code works so each file is handled
+    for the validations.
+
+    If one of the validations throw an error, then it will be appended
+    to the errors variable, and at the end, it checks if there
+    were errors, if yes, then it sends the errors, btu if not,
+    then proceeds to save the file to the server's directory
+    and the database storages the file and who uploaded it,
+    as well as from what area was uploaded from.
+
+*/
+
 require('connection.php');
 
 //$conn
@@ -17,7 +33,6 @@ for($i = 0; $i < count($uploadedfiles); $i++){
     if(isset($uploadedfiles["name"][$i])){
         $filename = $uploadedfiles["name"][$i];
         $filedir = null;
-        //$filedir = 'pdfs/'.$filename;
 
         if(!is_dir("./pdfs/$area/")){
 

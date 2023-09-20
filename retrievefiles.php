@@ -1,5 +1,13 @@
 <?php
 
+/*
+
+    The code that works to get the necessary files out
+    of the database, should be worth mentioning it only
+    gets the active files.
+
+*/
+
 require('connection.php');
 
 //$conn

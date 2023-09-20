@@ -1,5 +1,13 @@
 <?php
 
+
+/*
+
+    The code that sets the file inactive on the database,
+    it doesn't actually delete the file.
+
+*/
+
 require('connection.php');
 
 //$conn
