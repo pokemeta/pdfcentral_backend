@@ -1,5 +1,12 @@
 <?php
 
+/*
+    The script what does is make a query of the user
+    based on the username and password.
+    If the quiery returns empty, it will send the INVALID USER error,
+    otherwise, it sends the user's data in case a result matches
+*/
+
 require('connection.php');
 
 //$conn
