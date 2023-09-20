@@ -1,5 +1,14 @@
 <?php
 
+/*
+
+    This is straightforward: it receives the username,
+    password and area of the user, and then creates it
+    in the database, and sends the message that it was
+    created, pretty simple.
+
+*/
+
 require('connection.php');
 
 //$conn
