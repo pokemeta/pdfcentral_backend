@@ -1,9 +1,15 @@
 <?php
 
+/*
+
+    It's the code repeated again and again, but it pretty much gets the
+    user's files from each table, hence why it's done for each table.
+
+*/
+
 require('connection.php');
 
 //$conn
-//SELECT sentfiles.id, sentfiles.idusersender, sentfiles.area_origin, sentfiles.idfilesent, files_dg.filename FROM sentfiles JOIN files_dg WHERE files_dg.id = sentfiles.idfilesent AND sentfiles.iduserreceiver = 1;
 $id = $_POST["id"];
 $array_results = array();
 
@@ -34,6 +40,5 @@ $result4 = $statement->fetchAll();
 array_push($array_results, array("dg_res" => $result, "pap_res" => $result2, "di_res" => $result3, "db_res" => $result4));
 
 echo json_encode($array_results);
-//echo json_encode($result);
 
 ?>

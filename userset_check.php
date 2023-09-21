@@ -1,5 +1,11 @@
 <?php
 
+/*
+
+    The code that sets the file of the user as viewed.
+
+*/
+
 require('connection.php');
 
 //$conn
