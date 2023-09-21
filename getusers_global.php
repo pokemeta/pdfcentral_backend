@@ -1,5 +1,13 @@
 <?php
 
+/*
+
+    this will only get the users from the database,
+    the active ones for that matter, all the users,
+    nothing else.
+
+*/
+
 require('connection.php');
 
 //$conn

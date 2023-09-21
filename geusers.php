@@ -3,8 +3,8 @@
 /*
 
     this will only get the users from the database,
-    and the active ones for that matter, nothing
-    else.
+    the active ones for that matter, and from the area
+    nothing else.
 
 */
 
