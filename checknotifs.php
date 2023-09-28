@@ -13,7 +13,7 @@
 
 require('connection.php'); //retrieving $conn from here
 
-$id = $_POST["id"];
+$id = $_POST["id"]; //this is the logged user's id, it's the key that makes this work for everyone.
 
 $query = "SELECT * FROM timestest WHERE datetimes > DATE_SUB(NOW(), INTERVAL 5 MINUTE) AND sent_notified = 0 AND useridlink = $id";
 $statement = $conn->prepare($query);
