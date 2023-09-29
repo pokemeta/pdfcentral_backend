@@ -12,7 +12,7 @@ require('connection.php');
 
 //$conn
 
-$query = "SELECT * FROM users WHERE active = 1";
+$query = "SELECT * FROM users WHERE active = 1 AND NOT username = 'root'";
 $statement = $conn->prepare($query);
 $statement->execute();
 

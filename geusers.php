@@ -14,7 +14,7 @@ require('connection.php');
 
 $area = $_POST["area"];
 
-$query = "SELECT * FROM users WHERE area = '$area' AND active = 1";
+$query = "SELECT * FROM users WHERE area = '$area' AND active = 1 AND NOT username = 'root'";
 $statement = $conn->prepare($query);
 $statement->execute();
 
