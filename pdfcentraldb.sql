@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-09-2023 a las 19:35:16
+-- Tiempo de generación: 29-09-2023 a las 19:59:47
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -140,8 +140,8 @@ CREATE TABLE `users` (
   `username` text NOT NULL,
   `password` text NOT NULL,
   `active` enum('1','0') NOT NULL DEFAULT '1',
-  `area` enum('DG','PAP','DI','DB') DEFAULT NULL,
-  `rol` enum('director','lider','usuario') NOT NULL DEFAULT 'usuario'
+  `area` enum('DG','PAP','DI','DB','ROOT') DEFAULT NULL,
+  `rol` enum('director','lider','usuario','root') NOT NULL DEFAULT 'usuario'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -149,23 +149,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `active`, `area`, `rol`) VALUES
-(1, 'admin', '123', '1', 'DG', 'lider'),
-(2, 'legible', '1234', '1', 'PAP', 'lider'),
-(3, 'ivan', '1234', '1', 'DI', 'lider'),
-(4, 'pokemeta', '1234', '1', 'DB', 'lider'),
-(5, 'user1', '1234', '1', 'DG', 'usuario'),
-(6, 'fdsggfdsgfdsgfdgfdsgfdgfds', 'gfdsgfdsgfdsgfdsgfdgfdgf', '1', 'DG', 'usuario'),
-(9, 'erwtertrw', 'erwgjhkjhjhgfgcxf', '1', 'PAP', 'usuario'),
-(10, 'piuyjgfddzsvfds', 'fdsadx ccbggf', '1', 'PAP', 'usuario'),
-(11, '5435454354', '38574687487', '1', 'PAP', 'usuario'),
-(12, '4575287966', '786786768876', '1', 'PAP', 'usuario'),
-(13, 'fdgsgfdgfdgfdsf', '156432132513251325', '1', 'DI', 'usuario'),
-(14, 'dsffdsafdsa', 'fdsafdsfdsfdsafds', '1', 'DB', 'usuario'),
-(15, 'fdsafdsafdsfds', 'dsffdsafdsafdsafdsa', '1', 'DB', 'usuario'),
-(16, 'fdsfdsafdsfdsafdsafds', 'fdsfdsafdsafdsadsffdsafdsa', '1', 'DB', 'usuario'),
-(17, 'fdsfdsfdsafdfdsafdsafds', 'fdsfdsafdsafdsafdsafdsa', '1', 'DB', 'usuario'),
-(18, 'dehafrliaiu', 'fdspoiujapoih', '1', 'DB', 'usuario'),
-(19, 'o0ipjgknwsihwqg', 'poijfdsilherwgvu', '1', 'DB', 'usuario');
+(1, 'root', 'root', '1', 'ROOT', 'root');
 
 --
 -- Índices para tablas volcadas
@@ -276,53 +260,7 @@ ALTER TABLE `timestest`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `files`
---
-ALTER TABLE `files`
-  ADD CONSTRAINT `files_ibfk_1` FOREIGN KEY (`iduser`) REFERENCES `users` (`id`);
-
---
--- Filtros para la tabla `files_db`
---
-ALTER TABLE `files_db`
-  ADD CONSTRAINT `files_db_ibfk_1` FOREIGN KEY (`iduser`) REFERENCES `users` (`id`);
-
---
--- Filtros para la tabla `files_dg`
---
-ALTER TABLE `files_dg`
-  ADD CONSTRAINT `files_dg_ibfk_1` FOREIGN KEY (`iduser`) REFERENCES `users` (`id`);
-
---
--- Filtros para la tabla `files_di`
---
-ALTER TABLE `files_di`
-  ADD CONSTRAINT `files_di_ibfk_1` FOREIGN KEY (`iduser`) REFERENCES `users` (`id`);
-
---
--- Filtros para la tabla `files_pap`
---
-ALTER TABLE `files_pap`
-  ADD CONSTRAINT `files_pap_ibfk_1` FOREIGN KEY (`iduser`) REFERENCES `users` (`id`);
-
---
--- Filtros para la tabla `sentfiles`
---
-ALTER TABLE `sentfiles`
-  ADD CONSTRAINT `sentfiles_ibfk_1` FOREIGN KEY (`idusersender`) REFERENCES `users` (`id`);
-
---
--- Filtros para la tabla `timestest`
---
-ALTER TABLE `timestest`
-  ADD CONSTRAINT `timestest_ibfk_1` FOREIGN KEY (`useridlink`) REFERENCES `users` (`id`);
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
